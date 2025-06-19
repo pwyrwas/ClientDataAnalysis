@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClientDataAnalysis.Application\ClientDataAnalysis.Application.csproj" />
+    <ProjectReference Include="..\ClientDataAnalysis.Infrastructure\ClientDataAnalysis.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ImportFiles\" />
+  </ItemGroup>
+
 </Project>

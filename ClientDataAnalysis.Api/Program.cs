@@ -1,11 +1,16 @@
+using ClientDataAnalysis.Application;
+using ClientDataAnalysis.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+IntrastructureServiceCollection.AddServices(builder.Services);
+ApplicationServiceCollection.AddServices(builder.Services);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
