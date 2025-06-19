@@ -1,6 +1,5 @@
 ﻿using ClientDataAnalysis.Application.Interfaces;
 using ClientDataAnalysis.Domain;
-using System.Net.Http;
 
 namespace ClientDataAnalysis.Infrastructure.ClientData
 {
@@ -19,8 +18,10 @@ namespace ClientDataAnalysis.Infrastructure.ClientData
         public async Task<List<Client>> DownloadAndParseClientsAsync(string url)
         {
             var client = _httpClientFactory.CreateClient();
-            var stream = await client.GetStreamAsync(url);
-            var csvContent = await _zipService.ExtractCsvAsync(stream);
+            var data = await client.GetByteArrayAsync(url);
+
+            using var memoryStream = new MemoryStream(data);
+            var csvContent = await _zipService.ExtractCsvAsync(memoryStream);
             return await _csvService.ParseClientsAsync(csvContent);
         }
     }
