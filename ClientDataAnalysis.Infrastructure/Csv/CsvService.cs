@@ -24,9 +24,9 @@ namespace ClientDataAnalysis.Infrastructure.Csv
             var records = csv.GetRecords<Client>()
                              .Select(r => new Client
                              {
-                                 FirstName = r.FirstName,
-                                 LastName = r.LastName,
-                                 Country = r.Country,
+                                 FirstName = r.FirstName.Trim(),
+                                 LastName = r.LastName.Trim(),
+                                 Country = r.Country.Trim(),
                                  BirthDate = r.BirthDate
                              })
                              .ToList();
